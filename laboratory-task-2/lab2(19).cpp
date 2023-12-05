@@ -14,7 +14,7 @@ int main()
 { 
     int32_t n; 
     getNumb(n);
-    
+
     for (size_t a = 1;a <= n; a++) 
     {
         for (size_t b = 1;b <= n; b++) 
@@ -39,5 +39,6 @@ int main()
         }
 
     }
+    
     return 0; 
 }
