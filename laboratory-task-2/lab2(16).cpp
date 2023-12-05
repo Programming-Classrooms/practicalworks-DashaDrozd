@@ -1,65 +1,62 @@
 #include <iostream> 
-int main() { 
-    int32_t A, B; 
-    int32_t cntA = 0, cntB = 0, sch = 0, digitA = 0, digitB = 0, temp = 0, tempBB = 0; 
+#include <cmath>
+
+ int32_t getNumber(int32_t& A)
+{
     std::cout << "Enter number A: "; 
         std::cin >> A; 
 
-    while (A <= 0) 
+     while (A <= 0) 
     { 
         std::cout << "A is not a natural number.Try again: "; 
         std::cin >> A; 
     } 
+    return A;
+}
 
-    std::cout << "Enter number B: "; 
-    std::cin >> B; 
- 
-    while (B <= 0) 
+int32_t devisionByNumb(int32_t& temp,int32_t& counterA)
+{
+    while (temp > 0)
     { 
-        std::cout << "B is not a natural number"; 
-        std::cin >> B; 
+        temp = temp / 10; 
+        ++counterA; 
     } 
+    return counterA;
+}
+
+int main() { 
+    int32_t A, B; 
+    int32_t counterA = 0, counterB = 0, counter = 0, digitA = 0, digitB = 0, temp = 0, tempB2 = 0; 
+    getNumber(A);
+    getNumber(B);
 
     if (A > B) 
     { 
         std::cout << "Impossible"; 
         return 0; 
     } 
- 
     temp = A; 
     int32_t tempB = B; 
-
-    while (temp > 0)
-    { 
-        temp = temp / 10; 
-        ++cntA; 
-    } 
+    devisionByNumb(temp,counterA);
     temp = B; 
-
-    while (temp > 0) 
-    { 
-        temp = temp / 10; 
-        ++cntB; 
-    } 
-     
-    
+    devisionByNumb(temp,counterB);
     int32_t tempA = A; 
-        digitB = tempBB % 10; 
+        digitB = tempB2 % 10; 
         digitA =  tempA % 10; 
-        tempBB = B; 
+        tempB2 = B; 
 
-    for (size_t i = 0; i < cntA; ++i) 
+    for (size_t i = 0; i < counterA; ++i) 
     { 
         digitA = A % 10; 
         tempB = 0; 
-          tempBB/= 10; 
-        for (size_t j = 0; j < cntB; ++j)
+          tempB2/= 10; 
+        for (size_t j = 0; j < counterB; ++j)
         { 
-            digitB = tempBB % 10;
+            digitB = tempB2 % 10;
 
             if ( digitA == digitB) 
             { 
-                ++sch; 
+                ++counter; 
                 B /= 10; 
             } 
 
@@ -67,19 +64,19 @@ int main() {
 
             if (digitB == digitA)
             { 
-                ++sch; 
-                B = tempBB + tempB; 
+                ++counter; 
+                B = tempB2 + tempB; 
             } 
 
             else 
             { 
-                tempBB /= 10; 
+                tempB2 /= 10; 
             } 
         } 
         A /= 10; 
     } 
 
-    if (sch >= cntA) 
+    if (counter >= counterA) 
     { 
         std::cout << "Possible"; 
     } 
@@ -87,5 +84,6 @@ int main() {
     { 
         std::cout << "Impossible"; 
     } 
+
     return 0;
 }

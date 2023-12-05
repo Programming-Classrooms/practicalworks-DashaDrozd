@@ -1,16 +1,20 @@
 #include <iostream> 
-int main() 
-{ 
-    int32_t n; 
+int32_t getNumb(int32_t& n)
+{
     std::cout << "Enter natural number"; 
     std::cin >> n; 
 
-    while (n <= 0) 
+     while (n <= 0) 
     { 
         std::cout << "Not natural number.Try again: "; 
         std::cin >> n; 
     } 
-
+}
+int main() 
+{ 
+    int32_t n; 
+    getNumb(n);
+    
     for (size_t a = 1;a <= n; a++) 
     {
         for (size_t b = 1;b <= n; b++) 
