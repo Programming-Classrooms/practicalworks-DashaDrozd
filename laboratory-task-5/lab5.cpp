@@ -18,52 +18,53 @@ double funct3(double x)
    return pow(tan((x/2)+(acos(-1.0)/4)),3); 
 } 
  
-double trapezoidMethodIntergtal(const std::function<double(double)>& f, double a, double b,double eps ) 
+double trapezoidMethodIntergtal(const std::function<double(double)>& f, double boarder1, double boarder2, double eps ) 
 { 
-   uint64_t n = 4; 
-   double width = 0; 
    double x1 = 0, x2 = 0; 
+   uint32_t n = 4; 
+   double width = 0; 
    double s1 = 0; 
-   double s2 = 0.5 * (f(a) + f(b)) * (b - a); 
-   
-   do { 
+   double s2 = 0.5 * (f(boarder1) + f(boarder2)) * (boarder2 - boarder1); 
+
+   while (fabs(s2 - s1) > eps)
+   { 
       s1 = s2; 
       n *= 2; 
-      width = (b - a) / n; 
+      width = (boarder2 - boarder1) / n; 
       s2 = 0; 
       
-      for (int step = 0; step < n; ++step)  
-      { 
-         x1 = a + step * width; 
-         x2 = a + (step + 1) * width; 
-         s2 += 0.5 * (x2 - x1) * (f(x1) + f(x2)); 
-      } 
-      
-   } while (fabs(s1 - s2) > eps); 
+         for (int step = 0; step < n; ++step)  
+         { 
+            x1 = boarder1 + step * width; 
+            x2 = boarder1 + (step + 1) * width; 
+            s2 += 0.5 * (x2 - x1) * (f(x1) + f(x2)); 
+         } 
+         
+   }  
    
    return s2; 
 } 
  
-double rightRectangleMethodIntergtal(const std::function<double(double)>& f, double a, double b, double eps) 
+double rightRectangleMethodIntergtal(const std::function<double(double)>& f, double boarder1, double boarder2, double eps) 
 { 
-   uint64_t n = 4; 
-   double width = 0; 
    double x = 0; 
+   double width = 0; 
+   uint32_t n = 4; 
    double s1 = 0; 
-   double s2 = f(b) * (b - a); 
+   double s2 = f(boarder2) * (boarder2 - boarder1); 
    
-   while (fabs(s1 - s2) >= eps) 
+   while (fabs(s2 - s1) >= eps) 
    { 
       s1 = s2; 
       s2 = 0.0; 
       n *= 2; 
-      width = (b - a) / n; 
+      width = (boarder2 - boarder1) / n; 
       
-      for (int step = 1; step <= n; ++step) 
-      { 
-         x = a + step * width; 
-         s2 += width * f(x); 
-      } 
+         for (int step = 0; step < n; ++step) 
+         { 
+            x = boarder1 + step * width; 
+            s2 += width * f(x); 
+         } 
    
    } 
    
