@@ -1,4 +1,11 @@
-#include <iostream> 
+/*
+    В целочисленной квадратной матрице найти:
+    − максимальный элемент нижнего правого треугольника матрицы.
+    − переставить строки и столбцы матрицы так, чтобы в левом верхнем углу
+    матрицы оказался максимальный положительный элемент матрицы.
+*/
+
+#include <iostream>
 #include <cstdlib> 
 #include <ctime> 
 #include <iomanip> 
@@ -82,12 +89,9 @@ void movingMaxElementInLeftCorner(int32_t** matrix, const int32_t& size, size_t&
     
     std::swap(*matrix[0],*matrix[rowInd]);  
 
-        for(size_t i = 0; i < size; ++i) {
-
-            for (size_t j = 0; j < colInd; ++j) {    
-                std::swap( matrix[i][j], matrix[i][colInd]); 
-            } 
-        } 
+        for(size_t i = 0; i < colInd; ++i) {   
+                std::swap( matrix[0][i], matrix[0][colInd]); 
+            }  
 
     printMatrix(matrix, size); 
 } 
@@ -114,7 +118,7 @@ int main()
         cin >> n; 
     } 
 
-    matrix= new int32_t * [n]; 
+    matrix = new int32_t * [n]; 
 
     for (size_t i = 0; i < n; ++i) { 
         matrix[i] = new int32_t [n]; 
@@ -155,3 +159,4 @@ int main()
 
     return 0; 
 }
+
