@@ -46,10 +46,12 @@ int32_t sum(int32_t* arr, const int32_t& n)
     int32_t sum = 0; 
 
     for (int i = 0; i < n; ++i) { 
+    
         if (arr[n - 1 - i] == 0) { 
             exist = true; 
             return sum; 
         } 
+        
         sum += arr[n - 1 - i]; 
     } 
 
@@ -138,10 +140,10 @@ int main()
     std::cout << "\n\nMinimum element: " << p << "\n"; 
 
     try { 
-        std::cout<<"Sum of elements after last 0: "<<sum(arr, n); 
+        std::cout<<"Sum of elements after last 0: " << sum(arr, n); 
         std:: cout<<"\nSorted array: ";
         
-        for (size_t i = 0; i < n; i+=2){ 
+        for (size_t i = 0; i < n; i+=2) { 
             shiftLeft(arr, n, i , i >> 2); 
         } 
         
