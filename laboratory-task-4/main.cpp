@@ -13,6 +13,15 @@
 using std::cout; 
 using std::cin; 
 
+void alLocated(int32_t**& matrix, const int32_t& size)
+{
+    matrix = new int32_t* [size]; 
+
+    for (size_t i = 0; i < size; ++i) { 
+        matrix[i] = new int32_t [size]; 
+    } 
+}
+
 void fillMatrixFromKeyboard(int32_t** matrix, int32_t& size) 
 { 
     cout << "Enter elements of matrix: "; 
@@ -25,18 +34,18 @@ void fillMatrixFromKeyboard(int32_t** matrix, int32_t& size)
 
 void fillMatrixFromRandom(int32_t** matrix, const int32_t& size) 
 { 
-    int32_t min, max; 
+    int32_t boarder1, boarder2; 
     cout << "Enter boarders: "; 
-    cin >> min >> max; 
+    cin >> boarder1 >> boarder2; 
 
-    if (max < min) { 
-     std::swap(max, min); 
+    if (boarder2 < boarder1) { 
+     std::swap(boarder2, boarder1); 
     } 
     
 
     for (size_t i = 0; i < size; ++i) { 
         for (size_t j = 0; j < size; ++j) { 
-             matrix[i][j] = rand() % (max - min + 1) + min ; 
+             matrix[i][j] = rand() % (boarder2 - boarder1 + 1) + boarder1 ; 
         } 
     }  
 } 
@@ -72,10 +81,10 @@ int32_t searchOfMaxInRightLowCorner(int32_t** matrix, const int32_t& size)
 
     for (size_t i = 0; i < size; ++i) { 
         for (size_t j = 0; j < size; ++j) { 
-            if (matrix[size-1-i][size-1-j] > max) { 
-                max = matrix[size-1-i][size-1-j]; 
-                rowInd = size-1-i; 
-                colInd = size-1-j; 
+            if (matrix[i][j] > max) { 
+                max = matrix[i][j]; 
+                rowInd = i; 
+                colInd = j; 
             } 
         } 
     } 
@@ -87,13 +96,11 @@ void movingMaxElementInLeftCorner(int32_t** matrix, const int32_t& size, size_t&
         throw "Maximum element is not positive!"; 
     } 
     
-    std::swap(*matrix[0],*matrix[rowInd]);  
+    std::swap(matrix[0],matrix[rowInd]);  
 
         for(size_t i = 0; i < colInd; ++i) {   
                 std::swap( matrix[0][i], matrix[0][colInd]); 
             }  
-
-    printMatrix(matrix, size); 
 } 
 
 void deleteMemory(int32_t** matrix, const int32_t& size) 
@@ -106,23 +113,21 @@ void deleteMemory(int32_t** matrix, const int32_t& size)
     cout << "Memory is cleaned"; 
 } 
 
-
-
-int main() 
-{ 
-    int32_t** matrix; 
-    int32_t n = -1; 
-
+void inputSize(int32_t& n)
+{
     while (n <= 0) { 
         cout << " Enter number of rows and columns: "; 
         cin >> n; 
     } 
+}
 
-    matrix = new int32_t * [n]; 
 
-    for (size_t i = 0; i < n; ++i) { 
-        matrix[i] = new int32_t [n]; 
-    } 
+int main() 
+{ 
+    int32_t** matrix = nullptr; 
+    int32_t n = -1; 
+    inputSize(n);
+    alLocated(matrix, n);
 
     try { 
         srand(time(NULL)); 
@@ -148,11 +153,12 @@ int main()
         cout << "\nMaximum element of the lower right triangle of the matrix: " << searchOfMaxInRightLowCorner(matrix, n) << '\n'; 
         findMaxElemInds(matrix, n, rowInd, colInd);
         movingMaxElementInLeftCorner(matrix, n, rowInd, colInd); 
+        printMatrix(matrix, n);
         std::cout << "\n"; 
         throw "";  
     } 
 
-    catch (const char* msg) { 
+     catch (const char* msg) { 
         std::cout << msg; 
         deleteMemory(matrix, n); 
     } 
