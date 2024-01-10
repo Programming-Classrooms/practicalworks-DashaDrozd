@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <cmath>
 
 
 void isEmptyString (const std::string& str)
@@ -100,4 +101,3 @@ int main()
 	return 0;
 
 }
-
