@@ -38,20 +38,17 @@ double trapezoidMethodIntergtal(const std::function<double(double)>& f, double b
    double s2 = 0.5 * (f(boarder1) + f(boarder2)) * (boarder2 - boarder1); 
 
    while (fabs(s2 - s1) > eps) { 
-      s1 = s2; 
       n *= 2; 
-      width = (boarder2 - boarder1) / n; 
-      s2 = 0; 
-      
-         for (int step = 0; step < n; ++step) { 
-            x1 = boarder1 + step * width; 
-            x2 = boarder1 + (step + 1) * width; 
-            s2 += 0.5 * (x2 - x1) * (f(x1) + f(x2)); 
-         } 
-         
-   }  
-   
-   return s2; 
+      double h = (boarder2 - boarder1) / n; 
+      double sum = f(boarder1) + f(boarder2); 
+
+      for (int i = 1; i < n; ++i) {
+         double x = boarder1 + i * h;
+         sum += 2 * f(x); 
+      }
+
+      return sum * h / 2;
+      }
 } 
  
 double rightRectangleMethodIntergtal(const std::function<double(double)>& f, double boarder1, double boarder2, double eps) 
@@ -63,19 +60,18 @@ double rightRectangleMethodIntergtal(const std::function<double(double)>& f, dou
    double s2 = f(boarder2) * (boarder2 - boarder1); 
    
    while (fabs(s2 - s1) >= eps) { 
-      s1 = s2; 
-      s2 = 0.0; 
-      n *= 2; 
-      width = (boarder2 - boarder1) / n; 
-      
-         for (int step = 0; step < n; ++step){ 
-            x = boarder1 + step * width; 
-            s2 += width * f(x); 
-         } 
-   
+      s1 = s2;
+      n *= 2;
+      double h;
+      double sum = 0;
+      h = (boarder2 - boarder1) / n;
+
+      for (int i = 1; i <= n; i++) {
+         sum += f(boarder1 + i * h);
+         s2 = (sum * h);
+      }
    } 
-   
-   return s2; 
+      return s2; 
 } 
  
 void inputBoarders(double& boarder1, double& boarder2) 
