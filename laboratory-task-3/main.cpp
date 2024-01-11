@@ -6,11 +6,13 @@
     Преобразовать массив таким образом, чтобы в первой его половине располагались все
     элементы с четными номерами , а во второй половине — с нечетными. Порядок следования
     элементов не изменять.
-
 */
+
+
 #include <iostream> 
 #include <cstdlib>  
 #include <ctime> 
+
 
 void printArr(int32_t* arr, const int32_t& n) 
 { 
@@ -55,9 +57,14 @@ int32_t sum(int32_t* arr, const int32_t& n)
         sum += arr[n - 1 - i]; 
     } 
 
-    if (arr[n - 1] == 0) throw "last!\n"; 
-    if ( exist == false) throw "Zero is not exsist!\n"; 
+    if (arr[n - 1] == 0) {
+        throw "last!\n"; 
+    } 
 
+    if ( exist == false) {
+        throw "Zero is not exsist!\n"; 
+    }
+    
     return 0; 
 } 
 
