@@ -15,9 +15,9 @@
 
 bool isFullString(char* string)
 {
-    bool isEmpty = 0;
+    bool isEmpty = 1;
     if (string == nullptr || *string == '\0') {
-        throw std::exception("String is empty\n");
+       isEmpty = 0;
     }
 
     while (*string != '\0') {
@@ -28,9 +28,9 @@ bool isFullString(char* string)
     }
 
     if (!isEmpty) {
-        throw std::exception("String is empty\n");
+        isEmpty = 0;
     }
-    return 0;
+    return isEmpty;
 }
 
 
@@ -49,7 +49,9 @@ bool isPalindrome(const char* word)
 void findPalindromes(const char* str, char* result)
 {
     const char* delimiter = " ";
-    char* token = std::strtok(const_cast<char*>(str), delimiter);
+    std::string strCopy;
+    strcpy(strCopy, str);
+    char* token = std::strtok(strCopy, delimiter);
     char* palindromes[300];
     size_t count = 0;
 
@@ -88,20 +90,25 @@ void findPalindromes(const char* str, char* result)
 int main() {
       SetConsoleCP(1251);                
       SetConsoleOutputCP(1251);
+      setlocale(LC_ALL, "1251");
+
     try {
-        setlocale(LC_ALL, "1251");
+      
         char string[300];
         std::cout << "Enter the string: ";
         std::cin.getline(string, 300);
-        isFullString(string);
+
+       if(!isFullString(string)) {
+            std::exception ("String is empty!\n");
+       } 
+
         char result[300] = "";
         findPalindromes(string, result);
         std::cout << "the result: " << result << '\n';
-
     }
 
     catch (std::exception e) {
-        std::cout << e.what() << '\n';
+        std::cerr << e.what() << '\n';
     }
     
     return 0;
