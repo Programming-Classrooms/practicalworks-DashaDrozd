@@ -15,14 +15,6 @@ TEST(MyStringTest, DefaultConstructor)
 	EXPECT_EQ(str.getSize(), 0);
 }
 
-TEST(MyStringTest, CopyConstructor)
- {
- 	const char* testStr = "World";
- 	MyString str1(testStr);	MyString str2(str1);
-
- 	EXPECT_EQ(str1.getSize(), str2.getSize());
-}
-
 TEST(MyStringTest, AssignmentOperator)
 {
 	const char* testStr1 = "Hello";

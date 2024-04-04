@@ -1,7 +1,7 @@
 ## src/test/BUILD
 
 cc_test(
-    name = "test",
+    name = "tests",
     srcs = ["MyStringTests.cpp"],
     deps = [
         "@googletest//:gtest_main",
