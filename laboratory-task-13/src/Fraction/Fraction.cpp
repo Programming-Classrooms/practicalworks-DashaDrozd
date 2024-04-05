@@ -23,7 +23,7 @@ Fraction& Fraction::simplify()
 	int divisor = gcd(this->n, this->d);
 	if(divisor == 0)
 	{
-		this->n = 0;
+		this->n =  0;
 	}
 	else{
 		this->n /= divisor;
@@ -196,6 +196,6 @@ std::istream &operator>>(std::istream &in, Fraction &c)
 {
 	std::cout << "Input numinator and denaminator:\n";
 	in >> c.n >> c.d;
-	Fraction(c.n, c.d).simplify();
+	c.simplify();
 	return in;
 }
