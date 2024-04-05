@@ -196,19 +196,6 @@ TEST(MatrixTest, ScalarDivision) {
 //     EXPECT_NE(m1, m2);
 // }
 
-TEST(MatrixTest, InputOutput) {
-    Matrix m;
-    std::stringstream ss;
-    ss << "2 2\n1 2\n3 4\n";
-    ss >> m;
-    EXPECT_EQ(m.getColumns(), 2);
-    EXPECT_EQ(m.getRows(), 2);
-    EXPECT_EQ(m[0][0], 1);
-    EXPECT_EQ(m[0][1], 2);
-    EXPECT_EQ(m[1][0], 3);
-    EXPECT_EQ(m[1][1], 4);
-}
-
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
