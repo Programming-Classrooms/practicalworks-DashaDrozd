@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 
+//Заполнение матрицы
 void Matrix::fillMatrix()
 {
 	srand(time(NULL));
@@ -24,6 +25,7 @@ void Matrix::fillMatrix()
 	}
 }
 
+//Конструкторы
 Matrix::Matrix(): columns(1), rows(1)
 {
 	mtr = new int32_t * [rows];
@@ -76,11 +78,13 @@ Matrix::Matrix(const Matrix& rhs): columns(rhs.columns), rows(rhs.rows)
 	}
 }
 
+//Деструктор
 Matrix::~Matrix()
 {
 	delete[] this->mtr;
 }
 
+//Сеттеры и геттеры
 size_t Matrix::getColumns() const
 {
 	return columns;
@@ -105,6 +109,7 @@ void Matrix::setRows(int32_t rows)
 	}
 }
 
+//Скобки
 int32_t*& Matrix::operator[](int32_t index)
 {
 	if (index < 0 || index >= rows) {
@@ -112,7 +117,8 @@ int32_t*& Matrix::operator[](int32_t index)
 	}
 	return mtr[index];
 }
-
+ 
+ //Присваивание
 Matrix& Matrix::operator=(const Matrix& rhs)
 {
 	if (this != &rhs)
@@ -144,6 +150,7 @@ Matrix& Matrix::operator=(const Matrix& rhs)
 	return *this;
 }
 
+//Сумма
 Matrix Matrix::operator+(const Matrix& rhs) const
 {
 	if (this->rows != rhs.rows || this->columns != rhs.columns) {
@@ -160,6 +167,7 @@ Matrix Matrix::operator+(const Matrix& rhs) const
 	return res;
 }
 
+//Умножение на скаляр справа
 Matrix Matrix::operator*(int32_t k) const
 {
 	for (size_t i = 0; i < rows; ++i)
@@ -172,6 +180,7 @@ Matrix Matrix::operator*(int32_t k) const
 	return *this;
 }
 
+//Деление
 Matrix Matrix::operator/(int32_t k)
 {
 	if (k == 0) {
@@ -188,6 +197,7 @@ Matrix Matrix::operator/(int32_t k)
 		return *this;
 }
 
+//Сравнение
 bool Matrix::operator==(const Matrix& rhs)
 {
 	for (size_t i = 0; i < rows; ++i)
@@ -208,6 +218,7 @@ bool Matrix::operator!=(const Matrix& rhs)
 	return !(*this == rhs);
 }
 
+//Разность
 Matrix Matrix::operator-(const Matrix& rhs) const
 {
 	if (this->rows != rhs.rows || this->columns != rhs.columns) {
@@ -224,6 +235,7 @@ Matrix Matrix::operator-(const Matrix& rhs) const
 	return res;
 }
 
+//Перемножение матриц
 Matrix Matrix::operator*(const Matrix& rhs) const
 {
 	if (columns != rhs.rows) {
@@ -243,13 +255,14 @@ Matrix Matrix::operator*(const Matrix& rhs) const
 	return res;
 }
 
+//Умножение на скаляр слева
 Matrix operator*(int32_t k, const Matrix& rhs)
 {
 	return rhs * k;
 }
 
 
-
+//Ввод
 std::istream& operator>>(std::istream& in, Matrix& rhs)
 {
 	std::cout << "Enter number of rows and columns: ";
@@ -288,6 +301,7 @@ std::istream& operator>>(std::istream& in, Matrix& rhs)
 	return in;
 }
 
+//Вывод
 std::ostream& operator<<(std::ostream& out, const Matrix& rhs)
 {
 	for (size_t i = 0; i < rhs.rows; ++i)

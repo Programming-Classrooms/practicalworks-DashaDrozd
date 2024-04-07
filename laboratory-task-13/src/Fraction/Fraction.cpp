@@ -1,6 +1,7 @@
 #include "Fraction.h"
 #include <cmath>
 
+//Кострукторы
 Fraction::Fraction() : n(0), d(1)
 {
 }
@@ -15,9 +16,12 @@ Fraction::Fraction(const Fraction &rhs) : n(rhs.n), d(rhs.d)
 	this->simplify();
 }
 
+//Деструктор
 Fraction::~Fraction()
 {
 }
+
+//Сокращение
 Fraction& Fraction::simplify()
 {
 	int divisor = gcd(this->n, this->d);
@@ -33,6 +37,7 @@ Fraction& Fraction::simplify()
 	return *this;
 }
 
+//НОД
 int32_t Fraction::gcd(int32_t n, int32_t m)
 {
 	if (m > n) {
@@ -51,7 +56,7 @@ int32_t Fraction::gcd(int32_t n, int32_t m)
 	return m;
 }
 
-
+//Сеттеры
 void Fraction::SetN(int32_t n)
 {
 	this->n = n;
@@ -66,6 +71,7 @@ void Fraction::SetD(int32_t d)
 	this->d = d;
 }
 
+//Геттеры
 int32_t Fraction::GetN()
 {
 	return n;
@@ -76,6 +82,7 @@ int32_t Fraction::GetD()
 	return d;
 }
 
+//Присваивание
 Fraction &Fraction::operator=(const Fraction &rhs)
 {
 	if (this != &rhs)
@@ -86,6 +93,7 @@ Fraction &Fraction::operator=(const Fraction &rhs)
 	return *this;
 }
 
+//Арифметические операции
 Fraction Fraction::operator-()
 {
 	return Fraction(-n, d);
@@ -126,6 +134,7 @@ Fraction Fraction::operator/(const Fraction &rhs)
 	return Fraction(n * rhs.d, d * rhs.n).simplify();
 }
 
+//Сравнения
 bool Fraction::operator==(const Fraction &rhs) const
 {
 	return (n * rhs.d == d * rhs.n);
@@ -146,6 +155,7 @@ bool Fraction::operator>(const Fraction &rhs) const
 	return (n * rhs.d > d * rhs.n);
 }
 
+//Инкременты и декременты
 Fraction Fraction::operator++(int32_t k)
 {
 	Fraction result(*this);
@@ -176,16 +186,19 @@ Fraction &Fraction::operator--()
 	return *this;
 }
 
+//Обратная дробь
 Fraction Fraction::operator~() const
 {
 	return Fraction(d, n);
 }
 
+//Приведение к дабл
 Fraction Fraction::cast()
 {
 	return Fraction(static_cast<double>(n), static_cast<double>(d));
 }
 
+//Ввод и вывод
 std::ostream &operator<<(std::ostream &out, const Fraction &rhs)
 {
 	out << rhs.n << "/" << rhs.d << '\n';
