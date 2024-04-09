@@ -6,13 +6,13 @@ double averageScoreAfterFirstSession(Student1Session* students, int32_t numStude
     int32_t totalMarks = 0;
     int32_t numGroupStudents = 0;
 
-    for (int i = 0; i < numStudents; ++i) {
+    for (size_t i = 0; i < numStudents; ++i) {
         if (students[i].getGroup() == group) {
             totalMarks += students[i].AverageMark();
             numGroupStudents++;
         }
     }
-
+    
     return static_cast<double>(totalMarks) / numGroupStudents;
 }
 
@@ -20,7 +20,7 @@ double averageScoreAfterSecondSession(Student2Session* students, int32_t numStud
     int32_t totalMarks = 0;
     int32_t numGroupStudents = 0;
 
-    for (int i = 0; i < numStudents; ++i) {
+    for (size_t i = 0; i < numStudents; ++i) {
         if (students[i].getGroup() == group) {
             totalMarks += students[i].AverageMark();
             numGroupStudents++;
