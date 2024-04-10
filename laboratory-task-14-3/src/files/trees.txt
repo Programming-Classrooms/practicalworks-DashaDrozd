@@ -1,0 +1,4 @@
+coniferous Forest Oak 50 100
+deciduous Fruit Apple 10 20 5
+coniferous Forest Pine 30 150
+deciduous Fruit Orange 8 15 3
