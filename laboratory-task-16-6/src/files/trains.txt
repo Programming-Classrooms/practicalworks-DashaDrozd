@@ -1,5 +1,0 @@
-2233 Brest-Central passengers 15:02 3:00
-26995 Town-Bereza fast 12:00 2:15
-3242 Vitebsk passengers 16:58 3:26
-658 Polotsk fast 20:57 9:03
-5666 Town-Bereza passengers 15:00 3:56
