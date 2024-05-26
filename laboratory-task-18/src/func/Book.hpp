@@ -6,28 +6,33 @@
 
 class Book {
 private:
-    std::string ISBN;
-    std::string title;
-    std::vector<std::string> authors;
-    double price;
-    int32_t count;
-    static size_t counter;
+    std::string ISBN; //Идентификационный номер - уникальное текстовое поле
+    std::string title; // Название
+    std::vector<std::string> authors; //Список авторов
+    double price; //Цена
+    int32_t count; //Количество экземпляров
+    static size_t counter; //статическая переменная для ИСБН
 
 public:
-    Book();
-    Book(const std::string, const std::vector<std::string>, double, int32_t);
-    Book(const Book&);
+    //Конструкторы
+    Book(); //по умолчанию
+    Book(const std::string, const std::vector<std::string>, double, int32_t); //с парметром
+    Book(const Book&); //копирования
 
-    Book& operator=(const Book&);
+    Book& operator=(const Book&); //перегрузка оператора присваивания
 
-    std::string getTitle() const;
-    std::string getISBN() const;
+    std::string getTitle() const; //получение названия
+    std::string getISBN() const; // получение номера
 
-    void addAuthor(const std::string&);
-    void removeAuthor(const std::string&);
+    //Сеттеры
+    void setPrice(double); 
+    void setCount(int32_t);
 
-    friend std::ostream& operator<<(std::ostream&, const Book&);
-    friend std::istream& operator>>(std::istream&, Book&);
+    void addAuthor(const std::string&); // добавление автора
+    void removeAuthor(const std::string&); // удаление автора
+
+    friend std::ostream& operator<<(std::ostream&, const Book&); //перегрузка оператора вывода
+    friend std::istream& operator>>(std::istream&, Book&); // перегрузка оператора ввода
 
     void print(std::ostream&) const;
 };

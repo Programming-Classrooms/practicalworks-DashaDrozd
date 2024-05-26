@@ -1,18 +1,38 @@
-#include "Book.hpp"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 
+#include "Book.hpp"
+
 size_t Book::counter = 0;
 
 //Конструктор с параметрами
-Book::Book(const std::string initTitle, const std::vector<std::string> initAuthors, double initPrice, int32_t initCount): ISBN(std::to_string(++counter)), title(initTitle), authors(initAuthors), price(initPrice), count(initCount) {}
+Book::Book(const std::string initTitle,
+ const std::vector<std::string> initAuthors,
+  double initPrice,
+   int32_t initCount): 
+   ISBN(std::to_string(++counter)), 
+   title(initTitle), 
+   authors(initAuthors), 
+   price(initPrice),
+   count(initCount)
+   {
+        setPrice(initPrice);
+        setCount(initCount);
+   }
 
 //Конструктор по умолчанию
-Book::Book(): ISBN(std::to_string(++counter)), title(" "), price(0.0), count(0) {}
+Book::Book(): ISBN(std::to_string(++counter)),
+ title(" "), 
+ price(0.0), 
+ count(0) {}
 
 //Конструктор копирования
-Book::Book(const Book&rhs):ISBN(rhs.ISBN), title(rhs.title), price (rhs.price), count (rhs.count), authors(rhs.authors)
+Book::Book(const Book&rhs):ISBN(rhs.ISBN), 
+title(rhs.title), 
+price (rhs.price), 
+count (rhs.count), 
+authors(rhs.authors)
 {}
 
 //Перегрузка оператора присваивания
@@ -39,6 +59,21 @@ std::string Book::getTitle() const
 std::string Book::getISBN() const
 {
     return ISBN;
+}
+
+//Сеттеры
+void Book::setPrice(double initPrice) {
+    if (initPrice < 0) {
+        throw std::invalid_argument("Price cannot be negative number!\n");
+    }
+    price = initPrice;
+}
+
+void Book::setCount(int32_t initCount) {
+    if (initCount < 0) {
+        throw std::invalid_argument("Count cannot be negative number!\n");
+    }
+    count = initCount;
 }
 
 //Добавление автора

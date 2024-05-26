@@ -1,7 +1,8 @@
-#include "Library.hpp"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+
+#include "Library.hpp"
 
 //Конструктор с параметром
 Library::Library(std::map<std::string, Book> initBooks): books(initBooks)
@@ -86,7 +87,9 @@ void Library::sortBooksByTitle() {
         bookList.push_back(pair.second);
     }
 
-    std::sort(bookList.begin(), bookList.end(), [](const Book& a, const Book& b) {
+    std::sort(bookList.begin(), 
+    bookList.end(),
+    [](const Book& a, const Book& b) {
         return a.getTitle() < b.getTitle();
     });
 
@@ -104,7 +107,9 @@ void Library::sortBooksByISBN()
         bookList.push_back(pair.second);
     }
 
-    std::sort(bookList.begin(), bookList.end(), [](const Book& a, const Book& b) {
+    std::sort(bookList.begin(), 
+    bookList.end(), 
+    [](const Book& a, const Book& b) {
         return a.getISBN() < b.getISBN();
     });
 

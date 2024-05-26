@@ -8,5 +8,6 @@ cc_library(
     hdrs = ["Book.hpp",
     "Library.hpp",
     ],
+    
     visibility = ["//visibility:public"]
 )
