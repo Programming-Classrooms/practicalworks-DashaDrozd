@@ -38,8 +38,14 @@ public:
     friend std::istream& operator>>(std::istream& in, BusRoute &rhs);
 
     //Перегрузка оператора вывода
-    friend std::ostream& operator>>(std::ostream &out, const BusRoute &rhs);
+    friend std::ostream& operator<<(std::ostream &out, const BusRoute &rhs);
 
+    //перегрузка операторов сравнения
+
+    bool operator==(const BusRoute &rhs) const;
+    bool operator<(const BusRoute &rhs) const;
+
+    
 };
 
 #endif // !BUSROUTE

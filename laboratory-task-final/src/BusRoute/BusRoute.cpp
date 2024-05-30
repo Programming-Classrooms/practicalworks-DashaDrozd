@@ -88,21 +88,28 @@ void BusRoute::setBusBrend(std::string initBusBrend)
     busBrend = initBusBrend;
 }
 
+bool BusRoute::operator==(const BusRoute &rhs) const
+{
+    return routeNum == rhs.routeNum;
+}
+
+bool BusRoute::operator<(const BusRoute &rhs) const
+{
+    return routeNum < rhs.routeNum;
+}
+
 //Оператор ввода
 std::istream &operator>>(std::istream &in, BusRoute &rhs)
 {
-    std::string line;
-    std::getline(in,line,' ');
-    rhs.routeNum = stoi(line);
-
-    std::getline(in, line, ' ');
-    rhs.driver = line;
-    
-    std::getline(in, line, ' ');
-    rhs.busNum = stoi(line);
-
-    std::getline (in, line, ' ');
-    rhs.busBrend = line;
-
+    in >> rhs.routeNum >> rhs.driver >> rhs.busNum >> rhs.busBrend;
     return in;
+}
+
+//Оператор вывода
+std::ostream &operator<<(std::ostream &out, const BusRoute &rhs)
+{
+    out << "Route Number:  " << rhs.routeNum << "\nDriver: " << rhs.driver << "\n Bus Number: " << rhs.busNum << "\n Bus Brend: " << rhs.busBrend;
+    out << std::endl;
+
+    return out;
 }
