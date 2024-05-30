@@ -28,7 +28,7 @@ void Library::addBook(const Book &rhs)
 //Удаление книги
 void Library::deleteBook(const Book &rhs)
 {
-    books.erase(std::remove(books.begin(), books.end(), rhs), books.end());
+    books.erase((std::remove(books.begin(), books.end(), rhs)), books.end());
 }
 
 // Поиск книги по названию
@@ -60,7 +60,7 @@ void Library::searchByAuthor(Author auth)
    for (const Book& book : books) {
         AuthorList authors = book.getAuthors();
         const std::vector<Author>& authorsList = authors.getAuthors();
-        if (std::find(authorsList.begin(), authorsList.end(), auth) != authorsList.end()) {
+        if ((std::find(authorsList.begin(), authorsList.end(), auth)) != authorsList.end()) {
             ++counter;
             std::cout << book << std::endl;
         }
