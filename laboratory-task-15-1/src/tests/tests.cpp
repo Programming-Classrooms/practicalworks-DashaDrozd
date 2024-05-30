@@ -1,4 +1,4 @@
-#include "../func/func.hpp"
+#include "../TDeque/TDeque.hpp"
 #include <gtest/gtest.h>
 
 

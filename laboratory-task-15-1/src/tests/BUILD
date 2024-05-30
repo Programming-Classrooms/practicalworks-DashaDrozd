@@ -5,8 +5,6 @@ cc_test(
     srcs = ["tests.cpp"],
     deps = [
         "@googletest//:gtest_main",
-        "//src/func:func",
+        "//src/TDeque:TDeque",
     ],
-    data = ["//src/files:data"]
 )
-
