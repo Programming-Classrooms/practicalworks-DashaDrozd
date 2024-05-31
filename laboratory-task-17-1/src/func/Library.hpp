@@ -1,6 +1,6 @@
 #ifndef LIBRARY_HPP
 #define LIBRARY_HPP
-
+#include<algorithm>
 #include <iostream>
 
 #include "Book.hpp"
@@ -11,7 +11,6 @@ class Library
     std::vector <Book> books;//Вектор для хранения книг
 
  public:
-
    //Конструкторы
     Library() = default; //по умолчанию
     Library(std::vector<Book>); //с параметром
